@@ -1,0 +1,44 @@
+This README file contains information on the contents of the ../sources/meta-imx-scfw layer.
+
+Please see the corresponding sections below for details.
+
+Maintainer: Alexandru Palalau <ioan-alexandru.palalau@nxp.com>
+
+Table of Contents
+=================
+
+   I. Adding the ../sources/meta-imx-scfw layer to your build
+  II. Getting imx-sc-firmware sources and deploy them in the right location
+ III. Setting correct build parameters for the imx-sc-firmware recipe 
+
+
+I. Adding the ../sources/meta-imx-scfw layer to your build
+==========================================================
+
+Run 'bitbake-layers add-layer ../sources/meta-imx-scfw'
+
+
+II. Getting imx-sc-firmware sources and deploy them in the right location
+=========================================================================
+
+This layer is based on the imx-sc-firmware sources that are provided with the imx-sc-firmware porting kit
+available for download (check under Linux section) at:
+
+Link: https://www.nxp.com/imxsw
+
+Note that the porting kit needs special licenses to be accepted before downloading.
+
+Steps:
+ 1. Download the poring kit archive.
+ 2. Extract porting kit archive.
+ 3. Run packages/imx-scfw-porting-kit-1.2.bin & accept EULA.
+ 4. Copy needed imx-scfw-porting-kit-1.2/src/scfw_export_mx8*.tar.gz to the meta-imx-scfw layer:
+    meta-imx-scfw/recipes-bsp/imx-sc-firmware/imx-sc-firmware/ 
+ 5. Rename your imx-sc-firmware patch to scfw.patch and copy it to the meta-imx-scfw layer.
+    Use the same location used for (4).
+
+
+III. Setting correct build parameters for the imx-sc-firmware recipe
+====================================================================
+
+In order to have a working build please set SILICON_REVISION and BOARD_TYPE variables to match the sources from (II.4)
