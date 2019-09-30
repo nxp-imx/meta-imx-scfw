@@ -31,8 +31,8 @@ Note that the porting kit needs special licenses to be accepted before downloadi
 Steps:
  1. Download the poring kit archive.
  2. Extract porting kit archive.
- 3. Run packages/imx-scfw-porting-kit-1.2.bin & accept EULA.
- 4. Copy needed imx-scfw-porting-kit-1.2/src/scfw_export_mx8*.tar.gz to the meta-imx-scfw layer:
+ 3. Run binary in the packages/ directory & accept EULA.
+ 4. Copy needed imx-scfw-porting-kit-[version]/src/scfw_export_mx8*.tar.gz to the meta-imx-scfw layer:
     meta-imx-scfw/recipes-bsp/imx-sc-firmware/imx-sc-firmware/ 
  5. Rename your imx-sc-firmware patch to scfw.patch and copy it to the meta-imx-scfw layer.
     Use the same location used for (4).
