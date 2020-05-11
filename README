@@ -42,3 +42,5 @@ III. Setting correct build parameters for the imx-sc-firmware recipe
 ====================================================================
 
 In order to have a working build please set SILICON_REVISION and BOARD_TYPE variables to match the sources from (II.4)
+Also the path correct path to the imx-scfw-toolchain needs to be added.
+This can be done in the imx-sc-firmware recipe through the TOOLS variable within the compile task.
