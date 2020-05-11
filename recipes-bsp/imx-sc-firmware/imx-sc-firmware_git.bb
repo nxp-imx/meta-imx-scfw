@@ -11,7 +11,6 @@ inherit fsl-eula2-unpack2 pkgconfig deploy autotools
 #Current firmware porting kit sources
 SRC_URI = "file://scfw_export_${CONFIG}.tar.gz \
            file://scfw.patch"
-
 #NOTE: Plase set SILICON_REVISION accordingly. Variants: A0, B0
 #NOTE: Plase set BOARD_TYPE accordingly. Variants: mek, val
 SILICON_REVISION = "B0"
@@ -28,7 +27,7 @@ BOOT_TOOLS = "imx-boot-tools"
 do_compile() {
 	cd ${S}
 	#NOTE: Set the correct path to the toolchain.
-	export TOOLS="/opt"
+	export TOOLS="/opt/imx-scfw-toolchain/tools/"
 	oe_runmake ${PLATFORM_EXTENSION} B=${BOARD_TYPE} R=${SILICON_REVISION}
 }
 
@@ -38,8 +37,9 @@ do_install () {
 }
 
 do_deploy () {
-    install -d ${DEPLOY_DIR_IMAGE}
-    install -m 0755 ${S}/build_${CONFIG}/${SC_FIRMWARE_NAME} ${DEPLOY_DIR_IMAGE}/${BOOT_TOOLS}/${SC_FIRMWARE_NAME}
+    install -Dm 0644 ${S}/build_${CONFIG}/${SC_FIRMWARE_NAME} ${DEPLOYDIR}/${BOOT_TOOLS}/${SC_FIRMWARE_NAME}
+    ln -sf ${SC_FIRMWARE_NAME} ${DEPLOYDIR}/${BOOT_TOOLS}/${symlink_name}
+
 }
 
 addtask deploy after do_install
