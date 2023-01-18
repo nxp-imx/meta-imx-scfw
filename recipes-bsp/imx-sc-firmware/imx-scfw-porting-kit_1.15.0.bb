@@ -52,19 +52,13 @@ do_compile() {
     oe_runmake ${TARGET} B=${BOARD_TYPE} R=${REV}
 }
 
-do_install() {
-    install -d ${D}${nonarch_base_libdir}/firmware/nxp
-    install -m 0644 ${B}/build_${CONFIG}/scfw_tcm.bin ${D}${nonarch_base_libdir}/firmware/nxp
-}
+do_install[noexec] = "1"
 
 do_deploy() {
     install -d ${DEPLOYDIR}/${BOOT_TOOLS}
     install -m 0644 ${B}/build_${CONFIG}/scfw_tcm.bin ${DEPLOYDIR}/${BOOT_TOOLS}
 }
 addtask deploy after do_compile
-
-INHIBIT_PACKAGE_STRIP = "1"
-INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
